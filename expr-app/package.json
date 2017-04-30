@@ -1,0 +1,28 @@
+{
+  "name": "express-app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etrn/expressjs-app.git"
+  },
+  "author": "etrn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/etrn/expressjs-app/issues"
+  },
+  "homepage": "https://github.com/etrn/expressjs-app#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0",
+    "jsonwebtoken": "^7.4.0",
+    "mongoose": "^4.9.6",
+    "morgan": "^1.8.1"
+  }
+}
