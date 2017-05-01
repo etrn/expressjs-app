@@ -63,7 +63,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 
         // create a token
         var token = jwt.sign(user, app.get('superSecret'), {
-          expiresInMinutes: 1440
+          expiresIn: 86400
         });
 
         res.json({
@@ -77,7 +77,25 @@ apiRoutes.post('/authenticate', function(req, res) {
 
   });
 });
-// TODO: route middleware to verify a token
+
+apiRoutes.use(function(req, res, next) {
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    if (token) {
+        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+            if (err) {
+                return res.json({ success: false, message: 'Authentication failed!'});
+            } else {
+                req.decoded = decoded;
+                next();
+            }
+        });
+    } else {
+        return res.status(403).send({
+            success: false,
+            message: 'No token provided.'
+        });
+    }
+});
 // route to show a message (GET http://localhost:4040/api/)
 apiRoutes.get('/', function(req, res) {
   res.json({ message: 'This is auth app)' });
